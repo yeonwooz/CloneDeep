@@ -117,23 +117,58 @@ function functionTest() {
   cloned = cloneDeep(original)
   original = null
   console.assert(cloned() == 'arrow function')
+
+  original = {
+    method: () => {
+      console.log(11111)
+      return 'arrow function'
+    }
+  }
+  cloned = cloneDeep(original)
+  original.method = null
+  console.assert(cloned.method() == 'arrow function')
 }
 
+function DateTest() {
+  let original = Date  // function
+  let cloned = cloneDeep(original) 
+  original = null
+  console.assert(cloned !== null)
 
-//TODO
+  original = Date()  // string
+  cloned = cloneDeep(original) 
+  original = null
+  console.assert(cloned !== null)
+  
+  original = new Date  // object
+  cloned = cloneDeep(original) 
+  original = null
+  console.assert(cloned !== null)
+
+  original = new Date()  // object
+  cloned = cloneDeep(original) 
+  original = null
+  console.assert(cloned !== null)
+
+  original = {
+    a: {
+      key: Date
+    }
+  }
+  cloned = cloneDeep(original)
+  original.a.key = null
+  console.assert(cloned?.a?.key !== null)
+}
+
+function MapSetTest() {
+  let original = new Set [{a:{aa:[{aaa:{aaa:'b', bbb: function(){console.log('bbb')}, ccc: ()=>{console.log('ccc')}}}]}}, {b:1}]
+  let cloned = cloneDeep(original) 
+ 
+  console.assert(original !== cloned, original, cloned)  
+}
+
 /*
   Others
-
-  original = Date
-  cloned = cloneDeep(original) 
-  console.log(original, cloned)
-  console.assert(original !== cloned, original, cloned)
-
-  original = new Date
-  cloned = cloneDeep(original) 
-  console.log(original, cloned)
-  console.assert(original !== cloned, original, cloned)
-
   original = new Map
   cloned = cloneDeep(original) 
   console.log(original, cloned)
@@ -228,3 +263,4 @@ const testValue = {
 primaryTest()
 objectTest()
 functionTest()
+DateTest()
