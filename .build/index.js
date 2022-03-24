@@ -24,23 +24,6 @@ function primaryTest() {
   original = "";
   console.assert(cloned === "1", original, cloned);
 }
-function functionTest() {
-  let original = function() {
-  };
-  let cloned = cloneDeep(original);
-  console.assert(original !== cloned, original, cloned);
-  original = Function;
-  cloned = cloneDeep(original);
-  console.assert(original !== cloned, original, cloned);
-  original = new Function();
-  cloned = cloneDeep(original);
-  console.assert(original !== cloned, original, cloned);
-  original = () => {
-    console.log(11111);
-  };
-  cloned = cloneDeep(original);
-  console.assert(original !== cloned, original, cloned);
-}
 function objectTest() {
   let original = {
     a: {
@@ -97,6 +80,30 @@ function objectTest() {
   original["a"] = 1;
   console.assert(Object.keys(cloned).length === 0);
 }
+function functionTest() {
+  var _a;
+  let original = function() {
+    return { a: 1 };
+  };
+  let cloned = cloneDeep(original);
+  original = null;
+  console.assert(((_a = cloned()) == null ? void 0 : _a.a) === 1);
+  original = Function;
+  cloned = cloneDeep(original);
+  original = null;
+  console.assert((cloned == null ? void 0 : cloned.length) !== void 0);
+  original = new Function();
+  cloned = cloneDeep(original);
+  original = null;
+  console.assert((cloned == null ? void 0 : cloned.length) !== void 0);
+  original = () => {
+    console.log(11111);
+    return "arrow function";
+  };
+  cloned = cloneDeep(original);
+  original = null;
+  console.assert(cloned() == "arrow function");
+}
 function cloneDeep(value) {
   if (value === null || value === void 0) {
     return value;
@@ -115,7 +122,7 @@ function cloneDeep(value) {
       return {};
     }
     const arr = [];
-    value.forEach((element) => {
+    value.length > 0 && value.forEach((element) => {
       const returnedValue = cloneDeep(element);
       arr.push(returnedValue);
     });
@@ -155,5 +162,7 @@ const testValue = {
     }
   }
 };
+primaryTest();
 objectTest();
+functionTest();
 //# sourceMappingURL=index.js.map

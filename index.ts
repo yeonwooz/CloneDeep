@@ -33,56 +33,6 @@ function primaryTest() {
   console.assert(cloned === '1', original, cloned) 
 }
 
-function functionTest() {
-   /*
-  Function
-  */
-  let original: any = function(){}
-  let cloned = cloneDeep(original) 
-  console.assert(original !== cloned, original, cloned)
-
-  original = Function
-  cloned = cloneDeep(original) 
-  console.assert(original !== cloned, original, cloned) 
-
-  original = new Function
-  cloned = cloneDeep(original) 
-  console.assert(original !== cloned, original, cloned) 
-  
-  //TODO
-  original = () => {console.log(11111)}
-  cloned = cloneDeep(original) 
-  console.assert(original !== cloned, original, cloned) 
-}
-
-
-//TODO
-/*
-  Others
-
-  original = Date
-  cloned = cloneDeep(original) 
-  console.log(original, cloned)
-  console.assert(original !== cloned, original, cloned)
-
-  original = new Date
-  cloned = cloneDeep(original) 
-  console.log(original, cloned)
-  console.assert(original !== cloned, original, cloned)
-
-  original = new Map
-  cloned = cloneDeep(original) 
-  console.log(original, cloned)
-  console.assert(original !== cloned, original, cloned)
-
-  original = new Set [{a:{aa:[{aaa:{aaa:'b', bbb: function(){console.log('bbb')}, ccc: ()=>{console.log('ccc')}}}]}}, {b:1}]
-  cloned = cloneDeep(original) 
-  console.log(original, cloned)
-  console.assert(original !== cloned, original, cloned)  
-  */
-
-
-
 function objectTest() {
   /*
   Object
@@ -141,6 +91,61 @@ function objectTest() {
   console.assert(Object.keys(cloned).length === 0)
 }
 
+function functionTest() {
+   /*
+  Function
+  */
+  let original: any = function(){return {a:1}}
+  let cloned = cloneDeep(original)
+  original = null
+  console.assert(cloned()?.a === 1)
+
+  original = Function
+  cloned = cloneDeep(original)
+  original = null
+  console.assert(cloned?.length !== undefined)  // 1
+
+  original = new Function
+  cloned = cloneDeep(original)
+  original = null
+  console.assert(cloned?.length !== undefined)  // 0
+  
+  original = () => {
+    console.log(11111)
+    return 'arrow function'
+  }
+  cloned = cloneDeep(original)
+  original = null
+  console.assert(cloned() == 'arrow function')
+}
+
+
+//TODO
+/*
+  Others
+
+  original = Date
+  cloned = cloneDeep(original) 
+  console.log(original, cloned)
+  console.assert(original !== cloned, original, cloned)
+
+  original = new Date
+  cloned = cloneDeep(original) 
+  console.log(original, cloned)
+  console.assert(original !== cloned, original, cloned)
+
+  original = new Map
+  cloned = cloneDeep(original) 
+  console.log(original, cloned)
+  console.assert(original !== cloned, original, cloned)
+
+  original = new Set [{a:{aa:[{aaa:{aaa:'b', bbb: function(){console.log('bbb')}, ccc: ()=>{console.log('ccc')}}}]}}, {b:1}]
+  cloned = cloneDeep(original) 
+  console.log(original, cloned)
+  console.assert(original !== cloned, original, cloned)  
+  */
+
+
 function cloneDeep(value: any) {
   if (value === null || value === undefined) {
     return value
@@ -163,8 +168,8 @@ function cloneDeep(value: any) {
       return {}
     }
     
-    const arr = []
-    value.forEach(element => {
+    const arr: any[] = []
+    value.length > 0 && value.forEach(element => {
       const returnedValue = cloneDeep(element)
       arr.push(returnedValue)
     })
@@ -220,7 +225,6 @@ const testValue = {
 
 //demo(testValue)
 
-
-//primaryTest()
-//functionTest()
+primaryTest()
 objectTest()
+functionTest()
