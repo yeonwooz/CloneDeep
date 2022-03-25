@@ -1,3 +1,11 @@
+/*
+standard built-in objects
+(https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects)
+
+Object, String, Number, Boolean, Symbol, Date, Math, RegExp, Array, Map/Set, WeakMap/WeakSet, Function, Promise, 
+Reflect, Proxy, JSON, Error ...
+*/
+
 function primaryTest() {
   /*
   primitives 원형보존 확인
