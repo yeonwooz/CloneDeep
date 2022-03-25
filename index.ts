@@ -4,6 +4,8 @@ standard built-in objects
 
 Object, String, Number, Boolean, Symbol, Date, Math, RegExp, Array, Map/Set, WeakMap/WeakSet, Function, Promise, 
 Reflect, Proxy, JSON, Error ...
+
+(Math, Reflect, JSON  - No Constructor )
 */
 
 function primaryTest() {
