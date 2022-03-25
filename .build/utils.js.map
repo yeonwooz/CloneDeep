@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../utils.ts"],
+  "sourcesContent": ["const func = () => {\n  console.log('func')\n}\n\n\nexport {func}\n"],
+  "mappings": ";;;;;;;AAAA;AAAA;AAAA;AAAA,MAAM,OAAO,MAAM;AACjB,UAAQ,IAAI;AAAA;",
+  "names": []
+}
