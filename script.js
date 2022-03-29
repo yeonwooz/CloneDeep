@@ -1,7 +1,7 @@
 import { cloneDeep } from './src/cloneDeep.js'
 import { judgeChild } from './src/utils/judgeChild.js'
 
-const origin = {
+let origin = {
     myCareer: {
         job: {
             name: 'frontend-developer',
@@ -12,20 +12,29 @@ const origin = {
 }
 
 
-try {
-    const judged = judgeChild(origin)
-    console.log('judged', judged)
+// origin = function() {
+//     console.log(111)
+// }
 
+//const cloned = cloneDeep(origin)
 
-
-} catch (error) {
-    switch (error?.code) {
-        case 1:
-            console.log(3333) 
+const obj  = {
+    myCareer: {
+        job: {
+            name: 'frontend-developer',
+            years: 1,
+            level: 'junior'
+        }
     }
 }
 
+const arrowfunc = () => {console.log('arrow func')}
 
+console.log(obj.prototype)
+console.log(''.prototype)
+console.log([].prototype)
+console.log(function(){}.prototype)
+console.log(Function.prototype)
+console.log(Date.prototype)
 
-const obj = {}
-console.log(9999, obj[Symbol.iterator])
+console.log(arrowfunc.prototype)
