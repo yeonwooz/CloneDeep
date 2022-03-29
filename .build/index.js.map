@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../index.ts"],
-  "sourcesContent": ["import * as utils from './utils'\nimport * as tests from './testFunctions'\n\ntests.primaryTest()\ntests.objectTest()\ntests.functionTest()\ntests.DateTest()\n"],
-  "mappings": ";;;;;;;;;;;;;;;;;;AACA,YAAuB;AAEvB,MAAM;AACN,MAAM;AACN,MAAM;AACN,MAAM;",
-  "names": []
-}

@@ -1,0 +1,15 @@
+{
+  "name": "clone-deep",
+  "version" : "1.0.0",
+  "private": true, 
+  "scripts": {
+    "test": "jest --verbose ./tests"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.17.6",
+    "@babel/preset-env": "^7.16.11"
+  }
+}
