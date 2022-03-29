@@ -28,6 +28,9 @@ test('하위뎁스 필드가 일반 Object 일 때, 객체를 깊은복사한 �
     origin.myCareer.job.years = 3
     origin.myCareer.job.level = 'senior'
 
+
+    expect(origin.myCareer.job.years).toBe(3)
+    expect(origin.myCareer.job.level).toBe('senior')
     expect(cloned.myCareer.job.years).toBe(1)
     expect(cloned.myCareer.job.level).toBe('junior')
 })
