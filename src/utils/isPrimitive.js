@@ -1,5 +1,7 @@
+import { isNullish } from "./isNulllish.js"
+
 function isPrimitive(value) {
-    return ['string', 'number', 'boolean'].includes(typeof value)
+    return isNullish(value) || ['number', 'bigint', 'string', 'boolean', 'symbol'].includes(typeof value)
 }
 
 export { isPrimitive }

@@ -13,13 +13,23 @@ test('숫자를 깊은복사한 후 원본을 바꾸어도 사본은 변하지 �
     let origin = 1
     const cloned = cloneDeep(origin)
     origin = 2
+    expect(origin).toBe(2)
     expect(cloned).toBe(1)
+})
+
+test('BigInt를 깊은복사한 후 원본을 바꾸어도 사본은 변하지 않는다.', () => {
+    let origin = BigInt(1)
+    const cloned = cloneDeep(origin)
+    origin = BigInt(2)
+    expect(origin).toBe(BigInt(2))
+    expect(cloned).toBe(BigInt(1))
 })
 
 test('문자열을 깊은복사한 후 원본을 바꾸어도 사본은 변하지 않는다.', () => {
     let origin = 'SpiderMan'
     const cloned = cloneDeep(origin)
     origin = 'Ironman'
+    expect(origin).toBe('Ironman')
     expect(cloned).toBe('SpiderMan')
 })
 
@@ -27,5 +37,20 @@ test('불린값을 깊은복사한 후 원본을 바꾸어도 사본은 변하�
     let origin = false
     const cloned = cloneDeep(origin)
     origin = true
+    expect(origin).toBe(true)
     expect(cloned).toBe(false)
+})
+
+/*
+Symbol : each object is unique. 
+Symbol("foo") === Symbol("foo"); // false
+=> use toString method to check the original value
+*/
+
+test('Symbol 값을 깊은복사한 후 원본을 바꾸어도 사본은 변하지 않는다.', () => {
+    let origin = Symbol(1)
+    const cloned = cloneDeep(origin)
+    origin = Symbol(1000000)
+    expect(origin.toString()).toBe('Symbol(1000000)')
+    expect(cloned.toString()).toBe('Symbol(1)')
 })
