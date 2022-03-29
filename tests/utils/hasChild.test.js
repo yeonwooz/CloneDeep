@@ -10,7 +10,3 @@ test('hasChild 함수는 패러미터로 받은 객체의 하위객체가 있는
     expect(utils.hasChild(arr)).toBe(false)
     expect(utils.hasChild(str)).toBe(false)
 })
-
-test('judgeChild 함수는 패러미터로 받은 객체의 하위객체가 무엇인지 반환할 수 있다.', () => {
-
-})

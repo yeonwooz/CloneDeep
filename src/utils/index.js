@@ -1,5 +1,5 @@
 export { isPrimitive } from './isPrimitive.js'
-export { hasChild, judgeChild } from './judgeChild.js'
+export { hasChild } from './hasChild.js'
 export { isNullish } from './isNulllish.js'
 export { isIterable } from './isIterable.js'
-export { isFunction } from './isFunction.js'
+export { isFunction } from './constructorName.js'

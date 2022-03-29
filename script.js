@@ -30,11 +30,11 @@ const obj  = {
 
 const arrowfunc = () => {console.log('arrow func')}
 
-console.log(obj.prototype)
-console.log(''.prototype)
-console.log([].prototype)
-console.log(function(){}.prototype)
-console.log(Function.prototype)
-console.log(Date.prototype)
-
-console.log(arrowfunc.prototype)
+console.log(1,obj.constructor.name)
+console.log(2,''.constructor.name)
+console.log(3,[].constructor.name)
+console.log(4,function(){}.constructor.name)
+console.log(5,Function.constructor.name)
+console.log(6,Date.constructor.name)
+console.log(7,new Date().constructor.name)
+console.log(8,arrowfunc.constructor.name)
