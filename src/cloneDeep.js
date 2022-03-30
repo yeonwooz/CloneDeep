@@ -1,17 +1,8 @@
 import * as utils from './utils/index.js'
 
-function shallowCopy (obj) {
-    this.obj = obj
-    return this.obj
-}
-
 function recursive(obj) {
-    if (utils.isPrimitive(obj)) {
+    if (utils.isPrimitive(obj) || !utils.hasChild(obj)) {
         return obj
-    }
-
-    if (!utils.hasChild(obj)) {
-        return shallowCopy.bind(obj)(obj)
     }
 
     if (utils.isIterable(obj)) {
