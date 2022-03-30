@@ -54,3 +54,11 @@ test('Symbol 값을 깊은복사한 후 원본을 바꾸어도 사본은 변하�
     expect(origin.toString()).toBe('Symbol(1000000)')
     expect(cloned.toString()).toBe('Symbol(1)')
 })
+
+test('null 값을 깊은복사한 후 원본을 바꾸어도 사본은 변하지 않는다.', () => {
+    let origin = null
+    const cloned = cloneDeep(origin)
+    origin = ''
+    expect(origin).toBe('')
+    expect(cloned).toBe(null)
+})
