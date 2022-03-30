@@ -13,7 +13,9 @@ function recursive(obj) {
             // TODO: curly bracket obj, function, Date ...
             if (utils.isFunction(obj)) {
                 return obj
-            }    
+            } else if (utils.isObject(obj)) {
+                return {}
+            }
         }
     }
 
@@ -26,11 +28,11 @@ function recursive(obj) {
 
         return cloned
     } else {
-        const cloned = {}
+        const cloned=  {}
         for (const key in obj) {
             cloned[key] = recursive(obj[key])
-            return cloned
         }
+        return cloned
     }
 }
 

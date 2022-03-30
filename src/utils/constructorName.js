@@ -6,4 +6,8 @@ function isFunction(obj) {
     return (constructorName(obj) === 'Function')
 }
 
-export { isFunction }
+function isObject(obj) {
+    return (constructorName(obj) === 'Object')
+}
+
+export { isFunction, isObject }
