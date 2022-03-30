@@ -165,5 +165,13 @@ test('하위뎁스 필드가 Set 또는 Map 객체 일 때, 객체를 깊은복�
     expect(utils.constructorName(clonedMap['method'])).toBe('Map')
 })
 
+test('하위뎁스 필드가 RegExp 객체 일 때, 객체를 깊은복사한 후 원본의 하위뎁스 필드 값을 바꿔도 사본에 영향을 주지 않는다.', () => {
+    const origin = {method: new RegExp()}
+    const cloned = cloneDeep(origin)
+    origin['method'] = null
+    expect(origin['method']).toBe(null)
+    expect(utils.constructorName(cloned['method'])).toBe('RegExp')
+})
+
 
 
