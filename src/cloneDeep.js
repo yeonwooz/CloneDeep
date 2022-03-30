@@ -1,22 +1,27 @@
 import * as utils from './utils/index.js'
 
+function shallowCopy (obj) {
+    this.obj = obj
+    // TODO: Array, typedarray, set, map ...
+    if (utils.isIterable(this.obj)) {
+    
+    } else {
+        // TODO: curly bracket obj, function, Date ...
+        if (utils.isFunction(this.obj)) {
+            return this.obj
+        } else if (utils.isObject(this.obj)) {
+            return {}
+        }
+    }
+}
+
 function recursive(obj) {
     if (utils.isPrimitive(obj)) {
         return obj
     }
 
     if (!utils.hasChild(obj)) {
-        // TODO: Array, typedarray, set, map ...
-        if (utils.isIterable(obj)) {
-            
-        } else {
-            // TODO: curly bracket obj, function, Date ...
-            if (utils.isFunction(obj)) {
-                return obj
-            } else if (utils.isObject(obj)) {
-                return {}
-            }
-        }
+        return shallowCopy.bind(obj)(obj)
     }
 
     if (utils.isIterable(obj)) {
