@@ -1,6 +1,6 @@
 import { expect } from "@jest/globals";
 import { cloneDeep } from "../src/cloneDeep.js";
-
+import * as utils from '../src/utils/index.js'
 /*
 Object, Function,
 
@@ -148,5 +148,22 @@ test('하위뎁스 필드가 Math 객체 일 때, 객체를 깊은복사한 후 
     expect(origin['method']).toBe(null)
     expect(cloned['method']).toBe(Math) 
 })
+
+test('하위뎁스 필드가 Set 또는 Map 객체 일 때, 객체를 깊은복사한 후 원본의 하위뎁스 필드 값을 바꿔도 사본에 영향을 주지 않는다.', () => {
+    const originSet = {method: new Set([1,2,3])}
+    const originMap = {method: new Map()}
+
+    const clonedSet = cloneDeep(originSet)
+    const clonedMap = cloneDeep(originMap)
+
+    originSet['method'] = null
+    originMap['method'] = null
+
+    expect(originSet['method']).toBe(null)
+    expect(originMap['method']).toBe(null)
+    expect(utils.constructorName(clonedSet['method'])).toBe('Set')
+    expect(utils.constructorName(clonedMap['method'])).toBe('Map')
+})
+
 
 
