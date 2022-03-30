@@ -138,8 +138,15 @@ test('하위뎁스 필드가 Proxy 객체 일 때, 객체를 깊은복사한 후
     const cloned = cloneDeep(origin)
     origin['getter'] = null
     expect(origin['getter']).toBe(null)
-    expect(cloned['getter']?.name).toBe('cindy')
+    expect(cloned['getter']?.name).toBe('cindy') // or access to 'target' , 'traps' 
 })
 
+test('하위뎁스 필드가 Math 객체 일 때, 객체를 깊은복사한 후 원본의 하위뎁스 필드 값을 바꿔도 사본에 영향을 주지 않는다.', () => {
+    const origin = {method: Math}
+    const cloned = cloneDeep(origin)
+    origin['method'] = null
+    expect(origin['method']).toBe(null)
+    expect(cloned['method']).toBe(Math) 
+})
 
 
