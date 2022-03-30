@@ -18,13 +18,16 @@ function isArrayBuffer(obj) {
     return (constructorName(obj) === 'ArrayBuffer')
 }
 
-function isTypedArray() {
+function isTypedArray(obj) {
     const typedArrayList = [
         Int16Array, Uint8Array, Uint8ClampedArray, Int16Array, Uint16Array, Int32Array, Uint32Array, Float32Array, Float64Array
     ]  
 
-    return typedArrayList.includes(this.getType())
+    return typedArrayList.includes(constructorName(obj))
 }
 
+function isProxy(obj) {
+    return obj?.target !== undefined
+}
 
-export { constructorName, isFunction, isObject, isArray, isArrayBuffer, isTypedArray }
+export { constructorName, isFunction, isObject, isArray, isArrayBuffer, isTypedArray, isProxy }
