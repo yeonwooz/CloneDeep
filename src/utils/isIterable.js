@@ -9,6 +9,7 @@ Set
 */
 
 function isIterable(obj) {
+    //  is Proxy iterable ?
     return obj[Symbol.iterator] !== undefined   
 }
 

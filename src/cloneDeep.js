@@ -6,6 +6,13 @@ function recursive(obj) {
     }
 
     if (utils.isIterable(obj)) {
+        for (const key in obj) {
+            if (obj?.target !== undefined) {
+                // proxy
+                return obj
+            }
+        }
+
         // TODO: Array, typedarray, set, map ...
         const cloned = []
         obj.length > 0 && obj.forEach(element => {
@@ -14,7 +21,7 @@ function recursive(obj) {
 
         return cloned
     } else {
-        const cloned=  {}
+        const cloned = {}
         for (const key in obj) {
             cloned[key] = recursive(obj[key])
         }

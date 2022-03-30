@@ -1,55 +1,20 @@
 import { cloneDeep } from './src/cloneDeep.js'
 import  * as utils from './src/utils/index.js'
-let origin = {
-    myCareer: {
-        job: {
-            name: 'frontend-developer',
-            years: 1,
-            level: 'junior'
-        }
+
+const account = {name: 'cindy'}
+let proxy = new Proxy(account, {
+    get: function(target){
+        console.log(target?.name)
+        return target?.name ?? 'no name'
     }
-}
+})
 
+const origin = {
+    getter: proxy
+} 
+const cloned = cloneDeep(origin)
 
-// origin = function() {
-//     console.log(111)
-// }
+console.log(1111, cloned)
+console.log(2222, origin)
 
-//const cloned = cloneDeep(origin)
-
-const obj  = {
-    myCareer: {
-        job: {
-            name: 'frontend-developer',
-            years: 1,
-            level: 'junior'
-        }
-    }
-}
-
-const arrowfunc = () => {console.log('arrow func')}
-
-// console.log(1,obj.constructor.name)
-// console.log(2,''.constructor.name)
-// console.log(3,[].constructor.name)
-// console.log(4,function(){}.constructor.name)
-// console.log(5,Function.constructor.name)
-// console.log(6,Date.constructor.name)
-// console.log(7,new Date().constructor.name)
-// console.log(8,arrowfunc.constructor.name)
-
-const buffer = new ArrayBuffer(8);
-
-
-const obj2 = {
-    method: Function
-}
-
-const copy = function(value) {
-    return value
-}
-
-const obj3 = copy(obj2)
-
-console.log(obj3.method === Function)
-
+console.log(999999, origin.getter.target)

@@ -27,4 +27,4 @@ function isTypedArray() {
 }
 
 
-export { isFunction, isObject, isArray, isArrayBuffer, isTypedArray }
+export { constructorName, isFunction, isObject, isArray, isArrayBuffer, isTypedArray }

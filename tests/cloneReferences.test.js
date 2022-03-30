@@ -123,7 +123,23 @@ test('하위뎁스 필드가 TypedArray 일 때, 객체를 깊은복사한 후 �
     expect(typeof cloned[2]).toBe('object')
 })
 
+test('하위뎁스 필드가 Proxy 객체 일 때, 객체를 깊은복사한 후 원본의 하위뎁스 필드 값을 바꿔도 사본에 영향을 주지 않는다.', () => {
+    const account = {name: 'cindy'}
+    let proxy = new Proxy(account, {
+        get: function(target){
+            console.log(target?.name)
+            return target?.name ?? 'no name'
+        }
+    })
 
+    const origin = {
+        getter: proxy
+    } 
+    const cloned = cloneDeep(origin)
+    origin['getter'] = null
+    expect(origin['getter']).toBe(null)
+    expect(cloned['getter']?.name).toBe('cindy')
+})
 
 
 
