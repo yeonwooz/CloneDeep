@@ -1,7 +1,7 @@
 import * as utils from './utils/index.js'
 
 function recursive(obj) {
-    if (obj === null || utils.isPrimitive(obj)) {
+    if (utils.isPrimitive(obj)) {
         return obj
     }
 
