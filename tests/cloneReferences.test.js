@@ -141,14 +141,6 @@ test('하위뎁스 필드가 Proxy 객체 일 때, 객체를 깊은복사한 후
     expect(cloned['getter']?.name).toBe('cindy') // or access to 'target' , 'traps' 
 })
 
-test('하위뎁스 필드가 Math 객체 일 때, 객체를 깊은복사한 후 원본의 하위뎁스 필드 값을 바꿔도 사본에 영향을 주지 않는다.', () => {
-    const origin = {method: Math}
-    const cloned = cloneDeep(origin)
-    origin['method'] = null
-    expect(origin['method']).toBe(null)
-    expect(cloned['method']).toBe(Math) 
-})
-
 test('하위뎁스 필드가 Set 또는 Map 객체 일 때, 객체를 깊은복사한 후 원본의 하위뎁스 필드 값을 바꿔도 사본에 영향을 주지 않는다.', () => {
     const originSet = {method: new Set([1,2,3])}
     const originMap = {method: new Map()}
@@ -173,5 +165,19 @@ test('하위뎁스 필드가 RegExp 객체 일 때, 객체를 깊은복사한 �
     expect(utils.constructorName(cloned['method'])).toBe('RegExp')
 })
 
+test('하위뎁스 필드가 Math 객체 일 때, 객체를 깊은복사한 후 원본의 하위뎁스 필드 값을 바꿔도 사본에 영향을 주지 않는다.', () => {
+    const origin = {method: Math}
+    const cloned = cloneDeep(origin)
+    origin['method'] = null
+    expect(origin['method']).toBe(null)
+    expect(cloned['method']).toBe(Math) 
+})
 
+test('하위뎁스 필드가 JSON 객체 일 때, 객체를 깊은복사한 후 원본의 하위뎁스 필드 값을 바꿔도 사본에 영향을 주지 않는다.', () => {
+    const origin = [1,{a:{method: JSON}}]
+    const cloned = cloneDeep(origin)
+    origin[1]['a'] = null
+    expect(origin[1]['a']).toBe(null)
+    expect(cloned[1]['a']['method']).toBe(JSON) 
+})
 
