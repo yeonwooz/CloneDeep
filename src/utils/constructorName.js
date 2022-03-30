@@ -10,4 +10,8 @@ function isObject(obj) {
     return (constructorName(obj) === 'Object')
 }
 
-export { isFunction, isObject }
+function isArray(obj) {
+    return (constructorName(obj) === 'Array')
+}
+
+export { isFunction, isObject, isArray }

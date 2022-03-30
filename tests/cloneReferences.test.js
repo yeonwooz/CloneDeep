@@ -1,3 +1,4 @@
+import { expect } from "@jest/globals";
 import { cloneDeep } from "../src/cloneDeep.js";
 
 /*
@@ -55,3 +56,38 @@ test('하위뎁스 필드가 일반 Object 일 때, 객체를 깊은복사한 �
     expect(cloned.myCareer.job.years).toBe(1)
     expect(cloned.myCareer.job.level).toBe('junior')
 })
+
+test('하위뎁스 필드가 Array 일 때, 객체를 깊은복사한 후 원본의 하위뎁스 필드 값을 바꿔도 사본에 영향을 주지 않는다.', () => {
+    const origin = [[
+        {
+            name: 'apple',
+            color: 'red',
+            like: 1
+        },
+        {
+            name: 'grape',
+            color: 'purple',
+            like: 0
+        },
+        {
+            name: 'orange',
+            color: 'orange',
+            like: 1
+        }
+    ]]
+    const cloned = cloneDeep(origin)
+    
+    origin[0][0].name = null
+    origin[0][1].like = 1
+    origin[0][2] = null
+
+
+    expect(origin[0][0].name).toBe(null)
+    expect(origin[0][1].like).toBe(1)
+    expect(origin[0][2]).toBe(null)
+
+    expect(cloned[0][0].name).toBe('apple')
+    expect(cloned[0][1].like).toBe(0)
+    expect(cloned[0][2]).not.toBe(null)
+})
+

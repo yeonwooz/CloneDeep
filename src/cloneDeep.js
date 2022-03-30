@@ -4,7 +4,9 @@ function shallowCopy (obj) {
     this.obj = obj
     // TODO: Array, typedarray, set, map ...
     if (utils.isIterable(this.obj)) {
-    
+        if (utils.isArray(this.obj)) {
+            return []
+        }
     } else {
         // TODO: curly bracket obj, function, Date ...
         if (utils.isFunction(this.obj)) {
@@ -27,8 +29,8 @@ function recursive(obj) {
     if (utils.isIterable(obj)) {
         // TODO: Array, typedarray, set, map ...
         const cloned = []
-        value.length > 0 && value.forEach(element => {
-          arr.push(cloneDeep(element))
+        obj.length > 0 && obj.forEach(element => {
+            cloned.push(cloneDeep(element))
         })
 
         return cloned
