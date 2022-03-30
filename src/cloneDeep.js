@@ -2,19 +2,7 @@ import * as utils from './utils/index.js'
 
 function shallowCopy (obj) {
     this.obj = obj
-    // TODO: Array, typedarray, set, map ...
-    if (utils.isIterable(this.obj)) {
-        if (utils.isArray(this.obj)) {
-            return []
-        }
-    } else {
-        // TODO: curly bracket obj, function, Date ...
-        if (utils.isFunction(this.obj)) {
-            return this.obj
-        } else if (utils.isObject(this.obj)) {
-            return {}
-        }
-    }
+    return this.obj
 }
 
 function recursive(obj) {
