@@ -91,3 +91,39 @@ test('하위뎁스 필드가 Array 일 때, 객체를 깊은복사한 후 원본
     expect(cloned[0][2]).not.toBe(null)
 })
 
+test('ArrayBuffer 객체를를 깊은복사한 후 원본의 하위뎁스 필드 값을 바꿔도 사본에 영향을 주지 않는다.', () => {
+    const buffer = new ArrayBuffer(8);
+    let origin = buffer
+    const cloned = cloneDeep(origin)
+    origin = null
+
+    expect(origin).toBe(null)
+    expect(cloned.toString()).toBe('[object ArrayBuffer]')
+})
+
+test('하위뎁스 필드가 ArrayBuffer 일 때, 객체를 깊은복사한 후 원본의 하위뎁스 필드 값을 바꿔도 사본에 영향을 주지 않는다.', () => {
+    const buffer1 = new ArrayBuffer(8);
+    const buffer2 = new ArrayBuffer(8);
+
+    const origin = [1,2,[buffer1, buffer2]]
+    const cloned = cloneDeep(origin)
+    origin[2][0] = null
+
+    expect(origin[2][0]).toBe(null)
+    expect(cloned[2][0].toString()).toBe('[object ArrayBuffer]')
+})
+
+test('하위뎁스 필드가 TypedArray 일 때, 객체를 깊은복사한 후 원본의 하위뎁스 필드 값을 바꿔도 사본에 영향을 주지 않는다.', () => {
+    const int16 = new Int16Array(2);
+    const origin = [1,2,[int16]]
+    const cloned = cloneDeep(origin)
+    origin[2] = ''
+
+    expect(origin[2]).toBe('')
+    expect(typeof cloned[2]).toBe('object')
+})
+
+
+
+
+

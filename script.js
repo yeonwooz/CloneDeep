@@ -38,6 +38,8 @@ const arrowfunc = () => {console.log('arrow func')}
 // console.log(7,new Date().constructor.name)
 // console.log(8,arrowfunc.constructor.name)
 
+const buffer = new ArrayBuffer(8);
+
 
 const obj2 = {
     method: Function
