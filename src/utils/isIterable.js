@@ -10,7 +10,7 @@ Set
 
 function isIterable(obj) {
     //  is Proxy iterable ?
-    return obj[Symbol.iterator] !== undefined   
+    return obj !== null && typeof obj[Symbol.iterator] === 'function'   
 }
 
 export { isIterable }
