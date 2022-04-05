@@ -12,6 +12,14 @@
           "useBuiltIns": "entry",
           "corejs": "3.6.5"
         }
-      ]
+      ],
+      [      
+        "@babel/preset-typescript", 
+      {
+        "preset-env": {
+          "modules": "commonjs"
+        }
+      }
+    ]
     ]
 }

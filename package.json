@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "test": "jest --verbose ./tests"
+    "test": "jest --verbose ./tests",
+    "start": "ts-node script"
   },
   "devDependencies": {
     "jest": "^27.5.1"
@@ -11,6 +12,7 @@
   "dependencies": {
     "@babel/cli": "^7.17.6",
     "@babel/preset-env": "^7.16.11",
+    "@babel/preset-typescript": "^7.16.7",
     "ts-loader": "^9.2.8",
     "typescript": "^4.6.3",
     "webpack": "^5.71.0",
