@@ -21,16 +21,8 @@ test('하위뎁스 필드가 prototype 속성을 갖는 함수일 때, 객체를
     method2: Function,
   }
   const cloned = cloneDeep(origin)
-
-  origin.method1 = function () {
-    return 'done'
-  }
-  origin.method2 = null
-
-  expect(origin.method1()).toBe('done')
-  expect(origin.method2).toBe(null)
-  expect(cloned.method1()).toBe('start')
-  expect(cloned.method2).toBe(Function)
+  expect(origin).toEqual(cloned)
+  expect(origin).not.toBe(cloned)
 })
 
 test('하위뎁스 필드가 일반 Object 일 때, 객체를 깊은복사한 후 원본의 하위뎁스 필드 값을 바꿔도 사본에 영향을 주지 않는다.', () => {

@@ -1,4 +1,4 @@
-import { cloneDeep } from "../src/cloneDeep";
+import { cloneDeep } from '../src/cloneDeep'
 
 /*
  복사는 본래 원시타입이든 참조타입이든 메모리주소를 복사함으로써 이루어진다. 
@@ -9,36 +9,32 @@ import { cloneDeep } from "../src/cloneDeep";
  상위뎁스의 공유관계는 변경되지 않기 때문에 원본과 사본의 하위뎁스 필드 같이 영향을 받게 된다.
 */
 
-test('숫자를 깊은복사한 후 원본을 바꾸어도 사본은 변하지 않는다.', () => {
-    let origin = 1
-    const cloned = cloneDeep(origin)
-    origin = 2
-    expect(origin).toBe(2)
-    expect(cloned).toBe(1)
+test('숫자를 깊은복사할 수 있다.', () => {
+  let origin = 1
+  const cloned = cloneDeep(origin)
+  expect(origin).toEqual(cloned) // Use .toEqual to compare recursively all properties of object instances (also known as "deep" equality)
+  expect(origin).toBe(cloned) // Use .toBe to compare primitive values or to check referential identity of object instances.
 })
 
-test('BigInt를 깊은복사한 후 원본을 바꾸어도 사본은 변하지 않는다.', () => {
-    let origin = BigInt(1)
-    const cloned = cloneDeep(origin)
-    origin = BigInt(2)
-    expect(origin).toBe(BigInt(2))
-    expect(cloned).toBe(BigInt(1))
+test('BigInt를 깊은복사할 수 있다.', () => {
+  let origin = BigInt(1)
+  const cloned = cloneDeep(origin)
+  expect(origin).toEqual(cloned)
+  expect(origin).toBe(cloned)
 })
 
-test('문자열을 깊은복사한 후 원본을 바꾸어도 사본은 변하지 않는다.', () => {
-    let origin = 'SpiderMan'
-    const cloned = cloneDeep(origin)
-    origin = 'Ironman'
-    expect(origin).toBe('Ironman')
-    expect(cloned).toBe('SpiderMan')
+test('문자열을 깊은복사할 수 있다.', () => {
+  let origin = 'SpiderMan'
+  const cloned = cloneDeep(origin)
+  expect(origin).toEqual(cloned)
+  expect(origin).toBe(cloned)
 })
 
-test('불린값을 깊은복사한 후 원본을 바꾸어도 사본은 변하지 않는다.', () => {
-    let origin = false
-    const cloned = cloneDeep(origin)
-    origin = true
-    expect(origin).toBe(true)
-    expect(cloned).toBe(false)
+test('불린값을 깊은복사할 수 있다.', () => {
+  let origin = false
+  const cloned = cloneDeep(origin)
+  expect(origin).toEqual(cloned)
+  expect(origin).toBe(cloned)
 })
 
 /*
@@ -47,10 +43,9 @@ Symbol("foo") === Symbol("foo"); // false
 => use toString method to check the original value
 */
 
-test('Symbol 값을 깊은복사한 후 원본을 바꾸어도 사본은 변하지 않는다.', () => {
-    let origin = Symbol(1)
-    const cloned = cloneDeep(origin)
-    origin = Symbol(1000000)
-    expect(origin.toString()).toBe('Symbol(1000000)')
-    expect(cloned.toString()).toBe('Symbol(1)')
+test('Symbol 값을 깊은복사할 수 있다.', () => {
+  let origin = Symbol(1)
+  const cloned = cloneDeep(origin)
+  expect(origin).toEqual(cloned)
+  expect(origin).toBe(cloned)
 })
