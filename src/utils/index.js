@@ -16,3 +16,18 @@ export {
   isRegExp,
   isProxy,
 } from './validations'
+
+export {
+  copyArray,
+  copyArrayBuffer,
+  copyTypedArray,
+  copyDate,
+  copyMap,
+  copySet,
+  copyRegExp,
+  copySymbol,
+  copyPrimitive,
+  copyProxy,
+} from './copyMethods'
+
+export { copyValidations } from './copyValidations'

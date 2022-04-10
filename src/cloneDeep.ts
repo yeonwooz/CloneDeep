@@ -1,30 +1,7 @@
 import * as utils from './utils/index.js'
-import { Primitive } from './utils/types.js'
-
-// {validation: , copy: },
-const copyValidations = [
-  { validation: utils.isArray, copy: copyArray },
-  { validation: utils.isPrimitive, copy: copyPrimitive },
-
-
-  // { validation: utils.isProxy, copy: copyProxy },
-]
-
-function copyArray(value: Array<any>) {
-  return value.reduce((arr, item, i) => {
-    arr[i] = cloneDeep(item)
-    return arr
-  }, [])
-}
-
-function copyPrimitive(value: Primitive) {
-  return value
-}
-
-// function copyProxy(value: )
 
 function recursive(value: any) {
-  for (const { validation, copy } of copyValidations) {
+  for (const { validation, copy } of utils.copyValidations) {
     if (validation(value)) {
       return copy(value)
     }
