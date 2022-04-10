@@ -1,4 +1,11 @@
 import * as utils from './utils/index.js'
+import { Primitive } from './utils/types.js'
+
+// {validation: , copy: },
+const copyValidations = [
+  { validation: utils.isArray, copy: copyArray },
+  { validation: utils.isPrimitive, copy: copyPrimitive },
+]
 
 function copyArray(value: Array<any>) {
   return value.reduce((arr, item, i) => {
@@ -7,19 +14,25 @@ function copyArray(value: Array<any>) {
   }, [])
 }
 
-function recursive(obj: any) {
-  if (utils.isPrimitive(obj) || utils.isProxy(obj) || !utils.hasChild(obj)) {
-    return obj
-  }
+function copyPrimitive(value: Primitive) {
+  return value
+}
 
-  if (utils.isArray(obj)) {
-    return copyArray(obj)
+function recursive(value: any) {
+  for (const { validation, copy } of copyValidations) {
+    if (validation(value)) {
+      return copy(value)
+    }
+  }
+  
+  if (utils.isProxy(value) || !utils.hasChild(value)) {
+    return value
   }
 
   const cloned = {}
-  for (const key in obj) {
+  for (const key in value) {
     //@ts-ignore
-    cloned[key] = recursive(obj[key])
+    cloned[key] = recursive(value[key])
   }
   return cloned
 }
