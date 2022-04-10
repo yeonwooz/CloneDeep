@@ -5,6 +5,9 @@ import { Primitive } from './utils/types.js'
 const copyValidations = [
   { validation: utils.isArray, copy: copyArray },
   { validation: utils.isPrimitive, copy: copyPrimitive },
+
+
+  // { validation: utils.isProxy, copy: copyProxy },
 ]
 
 function copyArray(value: Array<any>) {
@@ -18,13 +21,15 @@ function copyPrimitive(value: Primitive) {
   return value
 }
 
+// function copyProxy(value: )
+
 function recursive(value: any) {
   for (const { validation, copy } of copyValidations) {
     if (validation(value)) {
       return copy(value)
     }
   }
-  
+
   if (utils.isProxy(value) || !utils.hasChild(value)) {
     return value
   }

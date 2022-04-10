@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "t": "jest --verbose ./tests",
-    "start": "ts-node script"
+    "s": "ts-node script"
   },
   "devDependencies": {
     "jest": "^27.5.1"
