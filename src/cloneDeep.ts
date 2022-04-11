@@ -7,16 +7,17 @@ function recursive(value: any) {
     }
   }
 
-  if (utils.isProxy(value) || !utils.hasChild(value)) {
-    return value
-  }
+  // if (utils.isProxy(value) || !utils.hasChild(value)) {
+  //   return value
+  // }
 
-  const cloned = {}
-  for (const key in value) {
-    //@ts-ignore
-    cloned[key] = recursive(value[key])
-  }
-  return cloned
+  // const cloned = {}
+  // for (const key in value) {
+  //   //@ts-ignore
+  //   cloned[key] = recursive(value[key])
+  // }
+  // return cloned
+  return value
 }
 
 //@ts-ignore

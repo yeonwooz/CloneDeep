@@ -1,4 +1,4 @@
-import { Primitive } from './types'
+import * as Types from './types'
 import { cloneDeep } from '../cloneDeep'
 
 function copyArray(value: Array<any>) {
@@ -8,31 +8,59 @@ function copyArray(value: Array<any>) {
   }, [])
 }
 
-function copyArrayBuffer() {}
+// function copyArrayBuffer() {}
 
-function copyTypedArray() {}
+function copyTypedArray(value: Types.GenericTypedArray<Types.TypedArray>) {
+  return new value.constructor(value)
+}
 
 function copyDate(value: Date) {
   return new Date(value.getTime())
 }
 
-function copyMap() {}
+function copyMap(value: Map<string, any>) {
+  const result = new Map()
+  value.forEach((val, key) => {
+    result.set(key, cloneDeep(val))
+  })
+  return result
+}
+function copySet<T>(value: Set<T>) {
+  const result = new Set()
+  value.forEach((val) => {
+    result.add(cloneDeep(val))
+  })
 
-function copySet() {}
+  return result
+}
 
-function copyRegExp() {}
+function copyRegExp(value: RegExp) {
+  return new RegExp(value.source, value.flags)
+}
 
-function copySymbol() {}
+function copySymbol(value: symbol) {
+  const strSymbol = String(value)
+  const braketIndex = strSymbol.indexOf('(')
+  const strValue = strSymbol.substr(braketIndex).replace(/\(|\)/g, '')
+  return parseInt(strValue) ? Symbol(+strValue) : Symbol(strValue)
+}
 
-function copyPrimitive(value: Primitive) {
+function copyPrimitive(value: Types.Primitive) {
   return value
 }
 
-function copyProxy() {}
+// function copyProxy() {}
+
+function copyObject(value: Types.Obj) {
+  return Object.keys(value).reduce<Record<string, any>>((obj, key) => {
+    obj[key] = cloneDeep(value[key])
+    return obj
+  }, {})
+}
 
 export {
   copyArray,
-  copyArrayBuffer,
+  // copyArrayBuffer,
   copyTypedArray,
   copyDate,
   copyMap,
@@ -40,5 +68,6 @@ export {
   copyRegExp,
   copySymbol,
   copyPrimitive,
-  copyProxy,
+  copyObject,
+  // copyProxy,
 }

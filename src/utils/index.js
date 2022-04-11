@@ -1,7 +1,6 @@
 export { isPrimitive } from './isPrimitive'
 export { hasChild } from './hasChild'
 export { isNullish } from './isNulllish'
-export { isIterable } from './isIterable'
 export {
   constructorName,
   isFunction,
@@ -19,7 +18,7 @@ export {
 
 export {
   copyArray,
-  copyArrayBuffer,
+  // copyArrayBuffer,
   copyTypedArray,
   copyDate,
   copyMap,
@@ -27,7 +26,8 @@ export {
   copyRegExp,
   copySymbol,
   copyPrimitive,
-  copyProxy,
+  // copyProxy,
+  copyObject,
 } from './copyMethods'
 
 export { copyValidations } from './copyValidations'

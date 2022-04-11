@@ -7,7 +7,11 @@ function isFunction(value: any) {
 }
 
 function isObject(value: any) {
-  return constructorName(value) === 'Object'
+  return (
+    constructorName(value) === 'Object' &&
+    !Array.isArray(value) &&
+    value !== null
+  )
 }
 
 function isArray(value: any): value is Array<any> {

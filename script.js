@@ -4,7 +4,6 @@ import * as utils from './src/utils/index.js'
 const account = { name: 'cindy' }
 let proxy = new Proxy(account, {
   get: function (target) {
-    console.log(target?.name)
     return target?.name ?? 'no name'
   },
 })
@@ -18,6 +17,3 @@ const cloned = cloneDeep(origin)
 // console.log(2222, origin)
 
 // console.log(999999, origin.getter.target)
-
-console.log(33333, origin.getter.target)
-

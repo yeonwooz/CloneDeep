@@ -9,7 +9,9 @@ const copyValidations = [
   { validation: utils.isRegExp, copy: utils.copyRegExp },
   { validation: utils.isSet, copy: utils.copySet },
   { validation: utils.isSymbol, copy: utils.copySymbol },
-  // { validation: utils.isProxy, copy: copyProxy },
+  { validation: utils.isTypedArray, copy: utils.copyTypedArray },
+  { validation: utils.isObject, copy: utils.copyObject },
+  { validation: utils.isRegExp, copy: utils.copyRegExp },
 ]
 
 export { copyValidations }
