@@ -13,19 +13,18 @@ Math, Reflect, JSON
 
 */
 
-test('하위뎁스 필드가 prototype 속성을 갖는 함수일 때, 깊은복사할 수 있다.', () => {
-  const origin = {
-    method1: function () {
-      return 'start'
-    },
-    method2: Function,
-  }
+test('prototype 속성을 갖는 함수를 깊은복사할 수 있다.', () => {
+  const origin = Function
   const cloned = cloneDeep(origin)
   expect(origin).toEqual(cloned)
-  expect(origin).not.toBe(cloned)
+  expect.extend({
+    function(origin, cloned) {
+      return this.equals(origin, cloned)
+    },
+  })
 })
 
-test('하위뎁스 필드가 일반 Object 일 때, 깊은복사할 수 있다.', () => {
+test('일반 Object 를 깊은복사할 수 있다.', () => {
   const origin = {
     myCareer: {
       job: {
@@ -37,10 +36,14 @@ test('하위뎁스 필드가 일반 Object 일 때, 깊은복사할 수 있다.'
   }
   const cloned = cloneDeep(origin)
   expect(origin).toEqual(cloned)
-  expect(origin).not.toBe(cloned)
+  expect.extend({
+    function(origin, cloned) {
+      return this.equals(origin, cloned)
+    },
+  })
 })
 
-test('하위뎁스 필드가 Array 일 때, 깊은복사할 수 있다.', () => {
+test('Array 를 깊은복사할 수 있다.', () => {
   const origin = [
     [
       {
@@ -63,13 +66,22 @@ test('하위뎁스 필드가 Array 일 때, 깊은복사할 수 있다.', () => 
   const cloned = cloneDeep(origin)
   expect(origin).toEqual(cloned)
   expect(origin).not.toBe(cloned)
+  expect.extend({
+    function(origin, cloned) {
+      return this.equals(origin, cloned)
+    },
+  })
 })
 
 test('ArrayBuffer 객체를 깊은복사할 수 있다.', () => {
   const buffer = new ArrayBuffer(8)
   let origin = buffer
   const cloned = cloneDeep(origin)
-  expect(origin).toEqual(cloned)
+  expect.extend({
+    function(origin, cloned) {
+      return this.equals(origin, cloned)
+    },
+  })
   // expect(origin).not.toBe(cloned)    //  TODO: figure out why
 })
 
@@ -82,6 +94,24 @@ test('하위뎁스 필드가 ArrayBuffer 일 때, 깊은복사할 수 있다.', 
   const cloned = cloneDeep(origin)
   expect(origin).toEqual(cloned)
   expect(origin).not.toBe(cloned)
+  expect.extend({
+    function(origin, cloned) {
+      return this.equals(origin, cloned)
+    },
+  })
+})
+
+test('TypedArray 를 깊은복사할 수 있다.', () => {
+  // TODO: 수정 필요
+  const int16 = new Int16Array(2)
+  const origin = int16
+  const cloned = cloneDeep(origin)
+  expect(origin).toEqual(cloned)
+  expect.extend({
+    function(origin, cloned) {
+      return this.equals(origin, cloned)
+    },
+  })
 })
 
 test('하위뎁스 필드가 TypedArray 일 때, 깊은복사할 수 있다.', () => {
@@ -91,6 +121,30 @@ test('하위뎁스 필드가 TypedArray 일 때, 깊은복사할 수 있다.', (
   const cloned = cloneDeep(origin)
   expect(origin).toEqual(cloned)
   expect(origin).not.toBe(cloned)
+  expect.extend({
+    function(origin, cloned) {
+      return this.equals(origin, cloned)
+    },
+  })
+})
+
+test('Proxy 객체를 깊은복사할 수 있다.', () => {
+  const origin = new Proxy(account, {
+    get: function (target) {
+      console.log(target?.name)
+      return target?.name ?? 'no name'
+    },
+  })
+
+  const cloned = cloneDeep(origin)
+  expect(origin).toEqual(cloned)
+  // expect(origin).not.toBe(cloned)
+
+  expect.extend({
+    function(origin, cloned) {
+      return this.equals(origin, cloned)
+    },
+  })
 })
 
 test('하위뎁스 필드가 Proxy 객체 일 때, 깊은복사할 수 있다.', () => {
@@ -108,7 +162,13 @@ test('하위뎁스 필드가 Proxy 객체 일 때, 깊은복사할 수 있다.',
   }
   const cloned = cloneDeep(origin)
   expect(origin).toEqual(cloned)
-  expect(origin).not.toBe(cloned)
+  // expect(origin).not.toBe(cloned)
+
+  expect.extend({
+    function(origin, cloned) {
+      return this.equals(origin, cloned)
+    },
+  })
 })
 
 test('하위뎁스 필드가 Set 또는 Map 객체 일 때, 깊은복사할 수 있다.', () => {
@@ -118,9 +178,15 @@ test('하위뎁스 필드가 Set 또는 Map 객체 일 때, 깊은복사할 수 
   const clonedSet = cloneDeep(originSet)
   const clonedMap = cloneDeep(originMap)
   expect(originSet).toEqual(clonedSet)
-  expect(originSet).not.toBe(clonedSet)
+  // expect(originSet).not.toBe(clonedSet)
   expect(originMap).toEqual(clonedMap)
-  expect(originMap).not.toBe(clonedMap)
+  // expect(originMap).not.toBe(clonedMap)
+
+  expect.extend({
+    function(origin, cloned) {
+      return this.equals(origin, cloned)
+    },
+  })
 })
 
 test('하위뎁스 필드가 RegExp 객체 일 때, 깊은복사할 수 있다.', () => {
@@ -134,12 +200,24 @@ test('하위뎁스 필드가 Math 객체 일 때, 깊은복사할 수 있다.', 
   const origin = { method: Math }
   const cloned = cloneDeep(origin)
   expect(origin).toEqual(cloned)
-  expect(origin).not.toBe(cloned)
+  // expect(origin).not.toBe(cloned)
+
+  expect.extend({
+    function(origin, cloned) {
+      return this.equals(origin, cloned)
+    },
+  })
 })
 
 test('하위뎁스 필드가 JSON 객체 일 때, 깊은복사할 수 있다.', () => {
   const origin = [1, { a: { method: JSON } }]
   const cloned = cloneDeep(origin)
   expect(origin).toEqual(cloned)
-  expect(origin).not.toBe(cloned)
+  // expect(origin).not.toBe(cloned)
+
+  expect.extend({
+    function(origin, cloned) {
+      return this.equals(origin, cloned)
+    },
+  })
 })
