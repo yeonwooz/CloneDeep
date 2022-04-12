@@ -8,6 +8,7 @@ function isFunction(value: any) {
 
 function isObject(value: any) {
   return (
+    !isMath(value) &&
     constructorName(value) === 'Object' &&
     !Array.isArray(value) &&
     value !== null
@@ -62,6 +63,10 @@ function isProxy(value: any) {
   return value?.target !== undefined
 }
 
+function isMath(value: any): value is Math {
+  return value.toString() === '[object Math]'
+}
+
 export {
   constructorName,
   isFunction,
@@ -75,4 +80,5 @@ export {
   isSymbol,
   isRegExp,
   isProxy,
+  isMath,
 }

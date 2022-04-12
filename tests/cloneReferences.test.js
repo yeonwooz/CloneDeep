@@ -191,6 +191,18 @@ test('하위뎁스 필드가 RegExp 객체 일 때, 깊은복사할 수 있다.'
   expect(origin).toEqual(cloned)
 })
 
+test('Math 객체를 깊은복사할 수 있다.', () => {
+  const origin = Math
+  const cloned = cloneDeep(origin)
+  expect(origin).toEqual(cloned)
+
+  expect.extend({
+    function(origin, cloned) {
+      return this.equals(origin, cloned)
+    },
+  })
+})
+
 test('하위뎁스 필드가 Math 객체 일 때, 깊은복사할 수 있다.', () => {
   const origin = { method: Math }
   const cloned = cloneDeep(origin)

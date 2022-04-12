@@ -12,6 +12,7 @@ const copyValidations = [
   { validation: utils.isTypedArray, copy: utils.copyTypedArray },
   { validation: utils.isObject, copy: utils.copyObject },
   { validation: utils.isRegExp, copy: utils.copyRegExp },
+  { validation: utils.isMath, copy: utils.copyMath },
 ]
 
 export { copyValidations }

@@ -14,6 +14,7 @@ export {
   isSymbol,
   isRegExp,
   isProxy,
+  isMath,
 } from './validations'
 
 export {
@@ -28,6 +29,7 @@ export {
   copyPrimitive,
   // copyProxy,
   copyObject,
+  copyMath,
 } from './copyMethods'
 
 export { copyValidations } from './copyValidations'

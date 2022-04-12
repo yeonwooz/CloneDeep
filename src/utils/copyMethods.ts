@@ -58,6 +58,10 @@ function copyObject(value: Types.Obj) {
   }, {})
 }
 
+function copyMath(value: Math) {
+  return value
+}
+
 export {
   copyArray,
   // copyArrayBuffer,
@@ -69,5 +73,6 @@ export {
   copySymbol,
   copyPrimitive,
   copyObject,
+  copyMath,
   // copyProxy,
 }
