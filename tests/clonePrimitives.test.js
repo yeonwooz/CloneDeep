@@ -12,8 +12,8 @@ import { cloneDeep } from '../src/cloneDeep'
 test('숫자를 깊은복사할 수 있다.', () => {
   let origin = 1
   const cloned = cloneDeep(origin)
-  expect(origin).toEqual(cloned) // Use .toEqual to compare recursively all properties of object instances (also known as "deep" equality)
-  expect(origin).toBe(cloned) // Use .toBe to compare primitive values or to check referential identity of object instances.
+  expect(origin).toEqual(cloned) // Use .toEqual to compare recursively all properties of object instances (also known as "deep" equality).
+  expect(origin).toBe(cloned) // Use .toBe to compare primitive values.
 })
 
 test('BigInt를 깊은복사할 수 있다.', () => {
