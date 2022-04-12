@@ -137,7 +137,8 @@ test('Proxy 객체를 깊은복사할 수 있다.', () => {
 
   const cloned = cloneDeep(origin)
 
-  expect(origin).toEqual(cloned)
+  //  TODO: Can Proxy itself be compared by toEqual?
+  expect(origin?.target).toEqual(cloned?.target)
   expect.extend({
     function(origin, cloned) {
       return this.equals(origin, cloned)
@@ -158,7 +159,7 @@ test('하위뎁스 필드가 Proxy 객체 일 때, 깊은복사할 수 있다.',
     getter: proxy,
   }
   const cloned = cloneDeep(origin)
-  expect(origin).toEqual(cloned)
+  expect(origin?.target).toEqual(cloned?.target)
   expect.extend({
     function(origin, cloned) {
       return this.equals(origin, cloned)

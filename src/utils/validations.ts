@@ -64,7 +64,7 @@ function isProxy(value: any) {
 }
 
 function isMath(value: any): value is Math {
-  return value.toString() === '[object Math]'
+  return isFunction(value.toString) && value?.toString() === '[object Math]'
 }
 
 export {
