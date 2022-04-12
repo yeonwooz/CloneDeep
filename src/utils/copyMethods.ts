@@ -41,7 +41,7 @@ function copyRegExp(value: RegExp) {
 function copySymbol(value: symbol) {
   const strSymbol = String(value)
   const braketIndex = strSymbol.indexOf('(')
-  const strValue = strSymbol.substr(braketIndex).replace(/\(|\)/g, '')
+  const strValue = strSymbol.substring(braketIndex).replace(/\(|\)/g, '')
   return parseInt(strValue) ? Symbol(+strValue) : Symbol(strValue)
 }
 

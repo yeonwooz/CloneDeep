@@ -131,14 +131,15 @@ test('하위뎁스 필드가 TypedArray 일 때, 깊은복사할 수 있다.', (
 })
 
 test('Proxy 객체를 깊은복사할 수 있다.', () => {
+  const account = { name: 'cindy' }
   const origin = new Proxy(account, {
     get: function (target) {
-      console.log(target?.name)
       return target?.name ?? 'no name'
     },
   })
 
   const cloned = cloneDeep(origin)
+
   expect(origin).toEqual(cloned)
   expect.extend({
     function(origin, cloned) {
