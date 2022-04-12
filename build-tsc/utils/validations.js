@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isProxy = exports.isRegExp = exports.isSymbol = exports.isDate = exports.isSet = exports.isMap = exports.isTypedArray = exports.isArrayBuffer = exports.isArray = exports.isObject = exports.isFunction = exports.constructorName = void 0;
+exports.isMath = exports.isProxy = exports.isRegExp = exports.isSymbol = exports.isDate = exports.isSet = exports.isMap = exports.isTypedArray = exports.isArrayBuffer = exports.isArray = exports.isObject = exports.isFunction = exports.constructorName = void 0;
 function constructorName(value) {
     var _a;
     return (_a = value === null || value === void 0 ? void 0 : value.constructor) === null || _a === void 0 ? void 0 : _a.name;
@@ -11,7 +11,10 @@ function isFunction(value) {
 }
 exports.isFunction = isFunction;
 function isObject(value) {
-    return constructorName(value) === 'Object';
+    return (!isMath(value) &&
+        constructorName(value) === 'Object' &&
+        !Array.isArray(value) &&
+        value !== null);
 }
 exports.isObject = isObject;
 function isArray(value) {
@@ -61,4 +64,8 @@ function isProxy(value) {
     return (value === null || value === void 0 ? void 0 : value.target) !== undefined;
 }
 exports.isProxy = isProxy;
+function isMath(value) {
+    return isFunction(value.toString) && (value === null || value === void 0 ? void 0 : value.toString()) === '[object Math]';
+}
+exports.isMath = isMath;
 //# sourceMappingURL=validations.js.map

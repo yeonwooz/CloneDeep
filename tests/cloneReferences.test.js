@@ -1,6 +1,5 @@
 import { expect } from '@jest/globals'
-import { cloneDeep } from '../src/cloneDeep'
-import * as utils from '../src/utils/index.js'
+import { cloneDeep } from '~/cloneDeep'
 /*
 Object, Function,
 

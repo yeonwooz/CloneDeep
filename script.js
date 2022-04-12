@@ -1,5 +1,4 @@
-import { cloneDeep } from './src/cloneDeep'
-import * as utils from './src/utils/index.js'
+import { cloneDeep } from '~/cloneDeep'
 
 const account = { name: 'cindy' }
 let proxy = new Proxy(account, {
@@ -12,4 +11,3 @@ const origin = {
   getter: proxy,
 }
 const cloned = cloneDeep(origin)
-

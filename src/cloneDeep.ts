@@ -1,5 +1,5 @@
-import * as utils from './utils/index.js'
-import * as Types from './utils/types'
+import * as utils from '~/utils/index'
+import * as Types from '~/utils/types'
 
 //@ts-ignore
 function cloneDeep<T>(value: T): T

@@ -1,14 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.copyValidations = exports.copyProxy = exports.copyPrimitive = exports.copySymbol = exports.copyRegExp = exports.copySet = exports.copyMap = exports.copyDate = exports.copyTypedArray = exports.copyArrayBuffer = exports.copyArray = exports.isProxy = exports.isRegExp = exports.isSymbol = exports.isDate = exports.isSet = exports.isMap = exports.isTypedArray = exports.isArrayBuffer = exports.isArray = exports.isObject = exports.isFunction = exports.constructorName = exports.isIterable = exports.isNullish = exports.hasChild = exports.isPrimitive = void 0;
+exports.copyValidations = exports.copyMath = exports.copyObject = exports.copyPrimitive = exports.copySymbol = exports.copyRegExp = exports.copySet = exports.copyMap = exports.copyDate = exports.copyTypedArray = exports.copyArray = exports.isMath = exports.isProxy = exports.isRegExp = exports.isSymbol = exports.isDate = exports.isSet = exports.isMap = exports.isTypedArray = exports.isArrayBuffer = exports.isArray = exports.isObject = exports.isFunction = exports.constructorName = exports.isNullish = exports.isPrimitive = void 0;
 var isPrimitive_1 = require("./isPrimitive");
 Object.defineProperty(exports, "isPrimitive", { enumerable: true, get: function () { return isPrimitive_1.isPrimitive; } });
-var hasChild_1 = require("./hasChild");
-Object.defineProperty(exports, "hasChild", { enumerable: true, get: function () { return hasChild_1.hasChild; } });
 var isNulllish_1 = require("./isNulllish");
 Object.defineProperty(exports, "isNullish", { enumerable: true, get: function () { return isNulllish_1.isNullish; } });
-var isIterable_1 = require("./isIterable");
-Object.defineProperty(exports, "isIterable", { enumerable: true, get: function () { return isIterable_1.isIterable; } });
 var validations_1 = require("./validations");
 Object.defineProperty(exports, "constructorName", { enumerable: true, get: function () { return validations_1.constructorName; } });
 Object.defineProperty(exports, "isFunction", { enumerable: true, get: function () { return validations_1.isFunction; } });
@@ -22,9 +18,9 @@ Object.defineProperty(exports, "isDate", { enumerable: true, get: function () { 
 Object.defineProperty(exports, "isSymbol", { enumerable: true, get: function () { return validations_1.isSymbol; } });
 Object.defineProperty(exports, "isRegExp", { enumerable: true, get: function () { return validations_1.isRegExp; } });
 Object.defineProperty(exports, "isProxy", { enumerable: true, get: function () { return validations_1.isProxy; } });
+Object.defineProperty(exports, "isMath", { enumerable: true, get: function () { return validations_1.isMath; } });
 var copyMethods_1 = require("./copyMethods");
 Object.defineProperty(exports, "copyArray", { enumerable: true, get: function () { return copyMethods_1.copyArray; } });
-Object.defineProperty(exports, "copyArrayBuffer", { enumerable: true, get: function () { return copyMethods_1.copyArrayBuffer; } });
 Object.defineProperty(exports, "copyTypedArray", { enumerable: true, get: function () { return copyMethods_1.copyTypedArray; } });
 Object.defineProperty(exports, "copyDate", { enumerable: true, get: function () { return copyMethods_1.copyDate; } });
 Object.defineProperty(exports, "copyMap", { enumerable: true, get: function () { return copyMethods_1.copyMap; } });
@@ -32,7 +28,8 @@ Object.defineProperty(exports, "copySet", { enumerable: true, get: function () {
 Object.defineProperty(exports, "copyRegExp", { enumerable: true, get: function () { return copyMethods_1.copyRegExp; } });
 Object.defineProperty(exports, "copySymbol", { enumerable: true, get: function () { return copyMethods_1.copySymbol; } });
 Object.defineProperty(exports, "copyPrimitive", { enumerable: true, get: function () { return copyMethods_1.copyPrimitive; } });
-Object.defineProperty(exports, "copyProxy", { enumerable: true, get: function () { return copyMethods_1.copyProxy; } });
+Object.defineProperty(exports, "copyObject", { enumerable: true, get: function () { return copyMethods_1.copyObject; } });
+Object.defineProperty(exports, "copyMath", { enumerable: true, get: function () { return copyMethods_1.copyMath; } });
 var copyValidations_1 = require("./copyValidations");
 Object.defineProperty(exports, "copyValidations", { enumerable: true, get: function () { return copyValidations_1.copyValidations; } });
 //# sourceMappingURL=index.js.map

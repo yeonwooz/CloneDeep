@@ -11,6 +11,10 @@ var copyValidations = [
     { validation: utils.isRegExp, copy: utils.copyRegExp },
     { validation: utils.isSet, copy: utils.copySet },
     { validation: utils.isSymbol, copy: utils.copySymbol },
+    { validation: utils.isTypedArray, copy: utils.copyTypedArray },
+    { validation: utils.isObject, copy: utils.copyObject },
+    { validation: utils.isRegExp, copy: utils.copyRegExp },
+    { validation: utils.isMath, copy: utils.copyMath },
 ];
 exports.copyValidations = copyValidations;
 //# sourceMappingURL=copyValidations.js.map

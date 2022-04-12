@@ -20,9 +20,11 @@ module.exports = {
   },
 
   resolve: {
-    modules: ['node_modules'],
-    // 확장자를 배열로 넣어둠
-    extensions: ['.tsx', '.ts', '.js'],
+    modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
+    alias: {
+      '~': path.resolve(__dirname, 'src'),
+    },
   },
   output: {
     filename: 'bundle.js',

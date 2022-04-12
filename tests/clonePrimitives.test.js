@@ -1,4 +1,4 @@
-import { cloneDeep } from '../src/cloneDeep'
+import { cloneDeep } from '~/cloneDeep'
 
 /*
  복사는 본래 원시타입이든 참조타입이든 메모리주소를 복사함으로써 이루어진다. 
