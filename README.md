@@ -5,7 +5,7 @@
 - [x] Set up Jest
 - [x] Separate test cases for each function
 - [x] Implement functions according to each test case
-- [ ] Complete the CloneDeep code
+- [x] Complete the CloneDeep code
 
 ### standard built-in objects
 

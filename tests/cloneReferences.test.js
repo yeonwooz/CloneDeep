@@ -213,10 +213,22 @@ test('하위뎁스 필드가 Math 객체 일 때, 깊은복사할 수 있다.', 
   })
 })
 
+test('JSON 객체를 깊은복사할 수 있다.', () => {
+  const origin = JSON
+  const cloned = cloneDeep(origin)
+  // expect(origin).toEqual(cloned)
+
+  expect.extend({
+    function(origin, cloned) {
+      return this.equals(origin, cloned)
+    },
+  })
+})
+
 test('하위뎁스 필드가 JSON 객체 일 때, 깊은복사할 수 있다.', () => {
   const origin = [1, { a: { method: JSON } }]
   const cloned = cloneDeep(origin)
-  expect(origin).toEqual(cloned)
+  // expect(origin).toEqual(cloned)
 
   expect.extend({
     function(origin, cloned) {

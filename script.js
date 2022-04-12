@@ -13,7 +13,3 @@ const origin = {
 }
 const cloned = cloneDeep(origin)
 
-// console.log(1111, cloned)
-// console.log(2222, origin)
-
-// console.log(999999, origin.getter.target)

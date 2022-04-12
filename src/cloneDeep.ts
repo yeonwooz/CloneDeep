@@ -10,7 +10,6 @@ function cloneDeep(value: Types.Value) {
     }
   }
 
-  console.log(1111, value)
   return value
 }
 export { cloneDeep }
