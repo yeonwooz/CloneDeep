@@ -1,5 +1,4 @@
 export { isPrimitive } from './isPrimitive'
-export { hasChild } from './hasChild'
 export { isNullish } from './isNulllish'
 export {
   constructorName,
