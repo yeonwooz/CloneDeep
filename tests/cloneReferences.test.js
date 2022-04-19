@@ -17,6 +17,8 @@ test('생성자 함수를 깊은복사할 수 있다.', () => {
   const cloned = cloneDeep(origin)
 
   expect(origin).toEqual(cloned)
+  expect(origin === cloned).toBe(false) // 테스트실패. 얕은복사가 이루어지고 있음 
+
   expect.extend({
     function(origin, cloned) {
       return this.equals(origin, cloned)
@@ -40,7 +42,7 @@ test('일반 Object 를 깊은복사할 수 있다.', () => {
     },
   }
   const cloned = cloneDeep(origin)
-  expect(origin).toEqual(cloned)
+  expect(origin === cloned).toBe(false)
   expect.extend({
     function(origin, cloned) {
       return this.equals(origin, cloned)
